@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SPMB Online Madrasah - Tahun Ajaran 2026/2027</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-logo">
+          <img src="assets/logo-mis-nuris.png" alt="Logo MIS Nurul Ihsan" />
+        </div>
+        <div>
+          <strong>SPMB Online</strong>
+          <span>Real Time Online</span>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button class="ghost small" onclick="resetDemo()">Reset Form</button>
+        <button class="primary small" onclick="window.print()">Cetak</button>
+      </div>
+    </div>
+  </div>
+
+  <main class="page">
+    <section class="hero">
+      <div class="hero-text">
+        <a href="#" class="back-link">&larr; Kembali ke beranda</a>
+        <p class="eyebrow">Penerimaan Murid Baru Madrasah Tahun Ajaran 2026/2027</p>
+        <p class="sub-eyebrow">YAYASAN PENDIDIKAN ISLAM NURUL IHSAN CIBINONG</p>
+        <h1 id="schoolTitle">MIS Nurul Ikhsan</h1>
+      </div>
+      <div class="hero-illustration">
+        <img src="assets/siswa-nurul-ikhsan.png" alt="Siswa MIS Nurul Ikhsan" />
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="stepper" id="stepper">
+        <button type="button" class="step active" data-step="0" aria-current="step"><span>1</span><b>Peserta</b></button>
+        <button type="button" class="step" data-step="1"><span>2</span><b>Biodata<br>& Alamat</b></button>
+        <button type="button" class="step" data-step="2"><span>3</span><b>Data<br>Tambahan</b></button>
+        <button type="button" class="step" data-step="3"><span>4</span><b>Berkas</b></button>
+        <button type="button" class="step" data-step="4"><span>5</span><b>Konfirmasi Data</b></button>
+      </div>
+
+      <form id="spmbForm">
+        <!-- STEP 1 -->
+        <section class="form-step active">
+          <h2>Data Awal Peserta</h2>
+          <p class="help">Isi identitas awal sesuai dokumen resmi. Kolom bertanda <em>*</em> wajib diisi.</p>
+
+          <div class="grid two">
+            <label class="field">
+              <span>Nomor Induk Kependudukan (NIK) <em>*</em></span>
+              <input type="text" name="nik" maxlength="16" inputmode="numeric" placeholder="Masukkan NIK 16 digit" required />
+              <small>Masukan NIK dengan Benar</small>
+            </label>
+
+            <div class="field">
+              <span>Sekolah Asal <em>*</em></span>
+              <div class="radio-group">
+                <label><input type="radio" name="wilayah" value="Dalam Wilayah" required /> Dalam Wilayah</label>
+                <label><input type="radio" name="wilayah" value="Luar Wilayah" /> Luar Wilayah</label>
+              </div>
+            </div>
+
+            <label class="field">
+              <span>Sekolah Asal <em>*</em></span>
+              <select name="sekolahAsal" required>
+                <option value="">Pilih sekolah asal</option>
+                <option>RA</option>
+                <option>TK</option>
+                <option>PAUD</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Tahun Lulus <em>*</em></span>
+              <select name="tahunLulus" required>
+                <option value="">Pilih tahun lulus</option>
+                <option>2026</option>
+                <option>2025</option>
+                <option>2024</option>
+                <option>2023</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="captcha-row">
+            <div class="field captcha-field">
+              <span>Kode Keamanan <em>*</em></span>
+              <div class="captcha-box">
+                <canvas id="captchaCanvas" width="250" height="62"></canvas>
+                <button type="button" class="icon-btn" onclick="generateCaptcha()" title="Muat ulang kode" aria-label="Muat ulang kode">&#8635;</button>
+              </div>
+              <input type="text" name="captcha" placeholder="Masukkan kode keamanan" required />
+            </div>
+          </div>
+        </section>
+
+        <!-- STEP 2 -->
+        <section class="form-step">
+          <h2>Biodata Peserta & Alamat</h2>
+          <p class="help">Gunakan data yang sama dengan Kartu Keluarga, Akta Kelahiran, dan dokumen sekolah.</p>
+
+          <div class="grid three">
+            <label class="field"><span>NISN</span><input type="text" name="nisn" maxlength="10" inputmode="numeric" placeholder="Contoh: 0123456789" /></label>
+            <label class="field wide"><span>Nama Lengkap <em>*</em></span><input type="text" name="nama" placeholder="Nama lengkap peserta didik" required /></label>
+            <label class="field"><span>Jenis Kelamin <em>*</em></span><select name="jk" required><option value="">Pilih</option><option>Laki-laki</option><option>Perempuan</option></select></label>
+
+            <label class="field"><span>Tempat Lahir <em>*</em></span><input type="text" name="tempatLahir" placeholder="Kota/Kabupaten" required /></label>
+            <label class="field"><span>Tanggal Lahir <em>*</em></span><input type="date" name="tanggalLahir" required /></label>
+            <label class="field"><span>Agama <em>*</em></span><select name="agama" required><option>Islam</option><option>Kristen</option><option>Katolik</option><option>Hindu</option><option>Buddha</option><option>Konghucu</option></select></label>
+
+            <label class="field"><span>No. HP Peserta</span><input type="tel" name="hpPeserta" placeholder="08xxxxxxxxxx" /></label>
+            <label class="field"><span>Email Peserta</span><input type="email" name="emailPeserta" placeholder="nama@email.com" /></label>
+            <label class="field"><span>Golongan Darah</span><select name="goldar"><option value="">Pilih</option><option>A</option><option>B</option><option>AB</option><option>O</option><option>Tidak Tahu</option></select></label>
+          </div>
+
+          <h3>Alamat Domisili</h3>
+          <div class="grid three">
+            <label class="field wide"><span>Alamat Lengkap <em>*</em></span><textarea name="alamat" rows="3" placeholder="Nama jalan, nomor rumah, kampung/perumahan" required></textarea></label>
+            <label class="field"><span>RT <em>*</em></span><input type="text" name="rt" maxlength="3" required /></label>
+            <label class="field"><span>RW <em>*</em></span><input type="text" name="rw" maxlength="3" required /></label>
+
+            <label class="field"><span>Provinsi <em>*</em></span><input type="text" name="provinsi" placeholder="Contoh: Jawa Barat" required /></label>
+            <label class="field"><span>Kabupaten/Kota <em>*</em></span><input type="text" name="kota" placeholder="Contoh: Bogor" required /></label>
+            <label class="field"><span>Kecamatan <em>*</em></span><input type="text" name="kecamatan" placeholder="Contoh: Cibinong" required /></label>
+
+            <label class="field"><span>Kelurahan/Desa <em>*</em></span><input type="text" name="kelurahan" required /></label>
+            <label class="field"><span>Kode Pos</span><input type="text" name="kodePos" maxlength="5" inputmode="numeric" /></label>
+            <label class="field"><span>Jarak Rumah ke Madrasah</span><select name="jarak"><option value="">Pilih</option><option>0 - 1 km</option><option>1 - 3 km</option><option>3 - 5 km</option><option>Lebih dari 5 km</option></select></label>
+          </div>
+        </section>
+
+        <!-- STEP 3 -->
+        <section class="form-step">
+          <h2>Data Tambahan</h2>
+          <p class="help">Lengkapi data keluarga, wali, dan kondisi pendukung peserta.</p>
+
+          <h3>Data Ayah</h3>
+          <div class="grid three">
+            <label class="field"><span>Nama Ayah <em>*</em></span><input type="text" name="namaAyah" required /></label>
+            <label class="field"><span>NIK Ayah</span><input type="text" name="nikAyah" maxlength="16" inputmode="numeric" /></label>
+            <label class="field"><span>No. HP Ayah</span><input type="tel" name="hpAyah" /></label>
+            <label class="field"><span>Pendidikan Ayah</span><select name="pendAyah"><option value="">Pilih</option><option>SD/MI</option><option>SMP/MTs</option><option>SMA/MA/SMK</option><option>D1-D3</option><option>S1</option><option>S2/S3</option></select></label>
+            <label class="field"><span>Pekerjaan Ayah</span><input type="text" name="kerjaAyah" /></label>
+            <label class="field"><span>Penghasilan Ayah</span><select name="gajiAyah"><option value="">Pilih</option><option>Kurang dari Rp1.000.000</option><option>Rp1.000.000 - Rp3.000.000</option><option>Rp3.000.000 - Rp5.000.000</option><option>Lebih dari Rp5.000.000</option></select></label>
+          </div>
+
+          <h3>Data Ibu</h3>
+          <div class="grid three">
+            <label class="field"><span>Nama Ibu <em>*</em></span><input type="text" name="namaIbu" required /></label>
+            <label class="field"><span>NIK Ibu</span><input type="text" name="nikIbu" maxlength="16" inputmode="numeric" /></label>
+            <label class="field"><span>No. HP Ibu</span><input type="tel" name="hpIbu" /></label>
+            <label class="field"><span>Pendidikan Ibu</span><select name="pendIbu"><option value="">Pilih</option><option>SD/MI</option><option>SMP/MTs</option><option>SMA/MA/SMK</option><option>D1-D3</option><option>S1</option><option>S2/S3</option></select></label>
+            <label class="field"><span>Pekerjaan Ibu</span><input type="text" name="kerjaIbu" /></label>
+            <label class="field"><span>Penghasilan Ibu</span><select name="gajiIbu"><option value="">Pilih</option><option>Tidak Berpenghasilan</option><option>Kurang dari Rp1.000.000</option><option>Rp1.000.000 - Rp3.000.000</option><option>Rp3.000.000 - Rp5.000.000</option><option>Lebih dari Rp5.000.000</option></select></label>
+          </div>
+
+          <h3>Data Pendukung</h3>
+          <div class="grid three">
+            <label class="field"><span>Status KIP/KKS/PKH</span><select name="bantuan"><option>Tidak Ada</option><option>KIP</option><option>KKS</option><option>PKH</option><option>Lainnya</option></select></label>
+            <label class="field"><span>No. Kartu Bantuan</span><input type="text" name="noBantuan" /></label>
+            <label class="field"><span>Transportasi ke Madrasah</span><select name="transport"><option value="">Pilih</option><option>Jalan Kaki</option><option>Sepeda</option><option>Motor</option><option>Mobil</option><option>Angkutan Umum</option></select></label>
+            <label class="field"><span>Tinggal Bersama</span><select name="tinggal"><option>Orang Tua</option><option>Wali</option><option>Saudara</option><option>Asrama/Pesantren</option></select></label>
+            <label class="field"><span>Kebutuhan Khusus</span><select name="kebutuhan"><option>Tidak Ada</option><option>Ada</option></select></label>
+            <label class="field"><span>Catatan Kesehatan</span><input type="text" name="kesehatan" placeholder="Opsional" /></label>
+          </div>
+        </section>
+
+        <!-- STEP 4 -->
+        <section class="form-step">
+          <h2>Unggah Berkas</h2>
+          <p class="help">Format berkas PDF/JPG/PNG. Ukuran ideal maksimal 2 MB per berkas.</p>
+
+          <div class="upload-grid">
+            <label class="upload-card">
+              <span>Akta Kelahiran <em>*</em></span>
+              <input type="file" name="akta" accept=".pdf,.jpg,.jpeg,.png" required />
+              <small>PDF/JPG/PNG</small>
+            </label>
+            <label class="upload-card">
+              <span>Kartu Keluarga <em>*</em></span>
+              <input type="file" name="kk" accept=".pdf,.jpg,.jpeg,.png" required />
+              <small>PDF/JPG/PNG</small>
+            </label>
+            <label class="upload-card">
+              <span>KTP Orang Tua/Wali</span>
+              <input type="file" name="ktpOrtu" accept=".pdf,.jpg,.jpeg,.png" />
+              <small>PDF/JPG/PNG</small>
+            </label>
+            <label class="upload-card">
+              <span>Ijazah / SKL <em>*</em></span>
+              <input type="file" name="skl" accept=".pdf,.jpg,.jpeg,.png" required />
+              <small>PDF/JPG/PNG</small>
+            </label>
+            <label class="upload-card">
+              <span>Pas Foto Peserta <em>*</em></span>
+              <input type="file" name="foto" accept=".jpg,.jpeg,.png" required />
+              <small>Background merah/biru</small>
+            </label>
+          </div>
+        </section>
+
+        <!-- STEP 5 -->
+        <section class="form-step">
+          <h2>Konfirmasi Data</h2>
+          <p class="help">Periksa kembali seluruh data sebelum mengirim pendaftaran.</p>
+
+          <div id="reviewBox" class="review-box"></div>
+
+          <label class="check-row">
+            <input type="checkbox" name="setujuBenar" required />
+            <span>Saya menyatakan bahwa seluruh data yang diisi adalah benar dan dapat dipertanggungjawabkan.</span>
+          </label>
+          <label class="check-row">
+            <input type="checkbox" name="setujuSyarat" required />
+            <span>Saya menyetujui ketentuan SPMB madrasah dan bersedia mengikuti proses seleksi sesuai jadwal.</span>
+          </label>
+        </section>
+
+        <div class="form-actions">
+          <button type="button" class="ghost" id="prevBtn">Batal / Sebelumnya</button>
+          <button type="button" class="primary" id="nextBtn">Selanjutnya</button>
+          <button type="submit" class="success" id="submitBtn" hidden>Kirim Pendaftaran</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer>Copyright &copy;2026, SPMB Online Real Time Online. All rights reserved.</footer>
+
+  <div class="toast" id="toast">Data berhasil disimpan.</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
